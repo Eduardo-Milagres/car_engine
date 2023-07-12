@@ -1,79 +1,40 @@
-class Support{
+class Arrow{
     constructor(config){
-        this.label = config.label
-        this.lenght = config.lenght || 10
-        this.x = config.x || width/2 - this.lenght/2 - padding
-        this.y = config.y || height/2
-        this.pos = createVector(this.x, this.y)
-        this.color = config.color || 255
-    }
-
-    show(){
-        textFont('Helvetica');
-        fill(this.color)
-        stroke(this.color)
-
-        triangle(this.x, this.y + this.lenght,
-                this.x + this.lenght, this.y + this.lenght,
-                this.x + this.lenght/2, this.y)
-        text(this.label, this.x, this.y+this.lenght+20)
-    }
-
-    set update(new_config){
-        this.x = new_config.x - this.lenght/2
-    }
-}
-
-class Force{
-    constructor(config){
-        this.label = config.label
-        this.magnitude = config.magnitude || 100
+        this.start_x = config.start_x || 0
+        this.start_y = config.start_y || 100
+        this.length = config.length || 100
         this.angle = config.angle || 90
-        this.x = config.x || width/2 - padding
-        this.y = config.y || height/2
-        this.pos = createVector(this.x, this.y)
-        this.arrow_length = config.arrow_length || 5
+        this.angle_correction = this.angle-90
+        this.arrow_height = config.arrow_height || 10
+        this.arrow_number = config.arrow_number || 1
         this.color = config.color || 255
-        this.x_component = this.magnitude * cos(radians(this.angle))
-        this.y_component = this.magnitude * sin(radians(this.angle)) 
+        this.x = width/2 - padding
+        this.y = height/2
+        this.pos = createVector(this.x, this.y)
     }
 
     show(){
-        let y_corrected = - 6 //Correct the arrow to thought the plataform
-        let angle_correction = 90 //The 0° is by default perpendicular to the x exis 90 corrects to parallel
-        let arc_radius = 50
-
-        textFont('Helvetica');
+        let arrow_widht = this.arrow_height * tan(radians(7,5))
         fill(this.color)
         stroke(this.color)
         
-        push()
-        translate(this.pos.x, this.pos.y) //Move the ref point to the arrow
-        rotate(radians(-this.angle+angle_correction))
-        
-        //Draw the arrow linking the points
-        beginShape()
-        vertex(0, y_corrected-this.magnitude)
-        vertex(0, y_corrected)
-        vertex(0-this.arrow_length/2, y_corrected-this.arrow_length*2)
-        vertex(0+this.arrow_length/2, y_corrected-this.arrow_length*2)
-        vertex(0, y_corrected)
-        endShape()
-        
-        text(this.label, -5, y_corrected-this.magnitude-20)
-        text(this.angle, arc_radius/2, -arc_radius/2)
+        rotate(radians(-this.angle_correction))
 
-        rotate(radians(-90)) // Makes the arc increase anticlockwise
-        fill(this.color, 1)
-        arc(0, 0, arc_radius, arc_radius, 0, radians(this.angle))
-        pop()
+        line(this.start_x, this.start_y, this.start_x, this.length)
+        triangle(this.start_x, 0,
+                 -arrow_widht, -this.arrow_height,
+                 arrow_widht * 2, -this.arrow_height)
+
+        if(this.arrow_number == 2){
+            triangle(this.start_x, this.length,
+                arrow_widht, this.length + this.arrow_height,
+                -arrow_widht * 2, this.length + this.arrow_height)
+        }
     }
 
-    set update(new_config){
+    update(new_config){
         this.pos.x = new_config.x || this.pos.x
         this.angle = new_config.angle || this.angle
-        this.magnitude = new_config.magnitude || this.magnitude
-        this.x_component = this.magnitude * cos(radians(this.angle))
-        this.y_component = this.magnitude * sin(radians(this.angle))
+        this.length = new_config.length || this.length
     }
 }

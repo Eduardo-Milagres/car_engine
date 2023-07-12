@@ -4,13 +4,58 @@ html, body {
 }
 
 canvas {
-  display: block;
+  display: flex;
+  position: absolute;
+}
+
+#canvas_area{
+  float: left;
+  height: calc(100vh - 30px);
+  width: calc(50vw);
+  padding-left: 5px;
+}
+
+#input_area{
+  position: relative;
+  float: left;
+  padding-left: 50px;
 }
 
 input, label{
-  margin-left: 50px;
+  margin-left: 5px;
 }
 
 .input_holder{
   border: 1px solid black;
+  border-radius: 5px;  
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.inputs{
+  height: 24vw;
+  overflow-y: auto;
+}
+
+.input_div{
+  display: grid;
+  column-gap: 5px;
+  row-gap: 5px;
+}
+
+.input_label{
+  margin-left: 20px;
+}
+
+label{
+  grid-column-start: 2;
+}
+
+input{
+  grid-column-start: 3;
+}
+
+.closed{
+  display: none;
 }
