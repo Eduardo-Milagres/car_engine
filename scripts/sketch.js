@@ -5,7 +5,8 @@ var Engine = Matter.Engine,
     Bodies = Matter.Bodies,
     Body = Matter.Body,
     Composite = Matter.Composite,
-    World = Matter.World
+    World = Matter.World,
+    Vector = Matter.Vector
 
 var engine, world, admition, indicator
 var air = []
@@ -51,7 +52,10 @@ function createMatterWorld(){
 function renderWithMatter(){
   var render = Render.create({
     element: document.body,
-    engine: engine
+    engine: engine,
+    options: {
+      strokeStyle: 'red',
+    }
   })
   Engine.run(engine)
   Render.run(render);
