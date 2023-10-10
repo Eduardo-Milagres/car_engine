@@ -36,6 +36,7 @@ class Indicator{
         
         this.pointer = Bodies.rectangle(this.x, this.y, this.pointer_lenght, this.thickness, this.options)     
         this.circle = Bodies.circle(this.x + this.pointer_lenght/2, this.y, this.thickness, {isStatic: true})
+        
         World.add(world, this.circle)
         Body.setCentre(this.pointer, this.pointer_vector)
 

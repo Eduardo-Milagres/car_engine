@@ -20,12 +20,12 @@ function setup() {
   indicator = new Indicator()
 
   frameRate(10)
-
 }
 
 function createCanva(){
   let canvas_size = getCanvasAreaSize();
   let canvas = createCanvas(canvas_size.width, canvas_size.heigth)
+  
   canvas.parent('canvas_area')
 }
 
@@ -50,26 +50,26 @@ function createMatterWorld(){
 }
 
 function renderWithMatter(){
-  var render = Render.create({
+  var render
+  var runner
+
+  runner = Runner.create();
+  render = Render.create({
     element: document.body,
     engine: engine,
     options: {
       strokeStyle: 'red',
     }
   })
+  
   Engine.run(engine)
   Render.run(render);
-
-  // create runner
-  var runner = Runner.create();
-
-  // run the engine
   Runner.run(runner, engine);
 }
 
 function mousePressed(){
-  var a = new Smoke(mouseX, mouseY)
-  air.push(a)
+  var smoke = new Smoke(mouseX, mouseY)
+  air.push(smoke)
 }
 
 document.addEventListener('keydown', (event)=>{
@@ -96,10 +96,6 @@ function draw() {
   strokeWeight(2)
   background(0)
   stroke(255, 100)
+  
   admition.show()
-
-  for(let i = 0; i < air.length; i++){
-    //air[i].show()
-    continue  
-  }
 }
