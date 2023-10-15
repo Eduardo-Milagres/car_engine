@@ -7,6 +7,7 @@ var Engine = Matter.Engine,
     Composite = Matter.Composite,
     World = Matter.World,
     Vector = Matter.Vector
+    Vertices = Matter.Vertices
 
 var engine, world, admition, indicator
 var air = []
@@ -16,8 +17,9 @@ function setup() {
   createMatterWorld()
   renderWithMatter()
 
-  admition = new Admition(400, 400, .5)
-  indicator = new Indicator()
+  admition = new Admition(400, 400)
+  indicator = new Indicator(200, 200)
+  valve = new Valve(400, 400, 160)
 
   frameRate(10)
 }
@@ -79,6 +81,7 @@ document.addEventListener('keydown', (event)=>{
 
     indicator.spin_up()
     indicator.key_status = 'down'
+a
   }
 })
 

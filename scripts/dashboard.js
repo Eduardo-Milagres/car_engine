@@ -1,7 +1,7 @@
 class Indicator{
-    constructor(){
-        this.x = 200
-        this.y = 200
+    constructor(x, y, options={}){
+        this.x = x
+        this.y = y
         this.scale = 1
         this.angle = 0
         this.pointer_lenght = 100 * this.scale
