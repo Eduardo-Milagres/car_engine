@@ -66,7 +66,6 @@ class Admition{
     }
 }
 
-
 class Valve{
     constructor(x, y, diametro_pistao, options={}){
         this.x = x
@@ -100,8 +99,6 @@ class Valve{
                 
                 {'x': this.x + this.diametro_externo_cabeca * 2, 'y': this.y + this.altura_axial},
                 {'x': this.x - this.diametro_externo_cabeca * 2, 'y': this.y + this.altura_axial},
-                {'x': this.x + this.diametro_externo_cabeca * 2, 'y': this.y + this.altura_axial + this.diametro_haste},
-                {'x': this.x - this.diametro_externo_cabeca * 2, 'y': this.y + this.altura_axial + this.diametro_haste},
             ],
             {isStatic: true}
         )
@@ -117,5 +114,33 @@ class Valve{
     update(options){
         this.x = this.x || this.options.x
         this.y = this.y || this.options.y
+    }
+}
+
+class CombustionChamber{
+    constructor(x, y, diametro_pistao, options={}){
+        this.x = x
+        this.y = y
+        this.thickness = 10 || options.thickness
+        this.lenght = 100 || options.lenght
+        this.diametro_pistao = diametro_pistao
+        this.roof_lenght = this.thickness + 15
+        this.draw()
+    }
+
+    draw(){
+        this.left_wall = Bodies.rectangle(this.x - this.thickness / 2, this.y - this.lenght / 2, this.thickness, this.lenght) 
+        this.right_wall = Bodies.rectangle(this.x + this.diametro_pistao, this.y - this.lenght / 2, this.thickness, this.lenght)
+        
+        this.left_roof = Bodies.rectangle(this.x - this.thickness / 2, this.y - this.lenght - this.thickness / 2, this.roof_lenght, this.thickness)
+        this.right_roof = Bodies.rectangle(this.x + this.diametro_pistao, this.y - this.lenght - this.thickness / 2, this.roof_lenght, this.thickness)
+
+        this.chamber = Matter.Body.create({
+            parts: [this.left_wall, this.right_wall,
+                    this.left_roof, this.right_roof],
+            isStatic: true
+        })
+
+        World.add(world, this.chamber)
     }
 }

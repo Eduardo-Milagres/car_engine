@@ -17,9 +17,10 @@ function setup() {
   createMatterWorld()
   renderWithMatter()
 
-  admition = new Admition(400, 400)
-  indicator = new Indicator(200, 200)
-  valve = new Valve(400, 400, 160)
+  // admition = new Admition(400, 400)
+  // indicator = new Indicator(200, 200)
+  //valve = new Valve(400, 400, 160)
+  combustion_chamber = new CombustionChamber(400, 400, 160)
 
   frameRate(10)
 }
@@ -100,5 +101,5 @@ function draw() {
   background(0)
   stroke(255, 100)
   
-  admition.show()
+  //admition.show()
 }
