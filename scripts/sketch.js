@@ -17,10 +17,10 @@ function setup() {
   createMatterWorld()
   renderWithMatter()
 
-  // admition = new Admition(400, 400)
-  // indicator = new Indicator(200, 200)
+  //admition = new Admition(400, 400)
+  indicator = new Indicator(200, 200)
   //valve = new Valve(400, 400, 160)
-  combustion_chamber = new CombustionChamber(400, 400, 160)
+  //combustion_chamber = new CombustionChamber(400, 400, 160)
 
   frameRate(10)
 }
@@ -69,32 +69,6 @@ function renderWithMatter(){
   Render.run(render);
   Runner.run(runner, engine);
 }
-
-function mousePressed(){
-  var smoke = new Smoke(mouseX, mouseY)
-  air.push(smoke)
-}
-
-document.addEventListener('keydown', (event)=>{
-  if(event.key == "a"){
-    admition.setValveOppening(90)
-    admition.key_status = 'down'
-
-    indicator.spin_up()
-    indicator.key_status = 'down'
-a
-  }
-})
-
-document.addEventListener("keyup", (event)=>{
-  if(event.key == "a"){
-    admition.setValveClossing()
-    admition.key_status = 'up'
-
-    indicator.spin_down()
-    indicator.key_status = 'up'
-  }
-})
 
 function draw() {
   strokeWeight(2)

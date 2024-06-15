@@ -99,4 +99,5 @@ class Indicator{
             }
         }, this.spin_down_delay)
     }
+    
 }
