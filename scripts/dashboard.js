@@ -28,9 +28,9 @@ class Indicator{
             parts: [this.pointer],
             isStatic: true
         })
-        World.add(world, this.body)
+        World.add(world, this.body) 
     }
-
+    
     pointer_creator(){
         this.pointer_vector = Vector.create(this.x + this.pointer_lenght/2, this.y)
         
@@ -39,17 +39,17 @@ class Indicator{
         
         World.add(world, this.circle)
         Body.setCentre(this.pointer, this.pointer_vector)
-
+        
         return this.pointer
     }
-
+    
     marks_creator(){
         this.marks_obj = []
         this.current_angle
         this.mark_length
         this.mark_x
         this.mark_y
-
+        
         for(let i = 0; i <= this.marks_num; i++){
             this.angle = this.angle_increment*i
             
@@ -58,7 +58,7 @@ class Indicator{
             } else {
                 this.mark_length = this.small_marks_lenght
             }
-
+            
             this.mark_x = this.x + this.pointer_lenght/2 + (this.pointer_lenght + this.small_marks_lenght/2 - this.pointer_padding) * Math.cos(this.angle)
             this.mark_y = this.y + (this.pointer_lenght - this.thickness + this.small_marks_lenght - this.pointer_padding) * Math.sin(this.angle)
             
@@ -78,19 +78,20 @@ class Indicator{
         }
         return this.marks_obj
     }
-
+    
     setIndicatorSwith(degree){
         this.angle = this.angle + degree
         Body.setAngle(this.pointer, -radians(this.angle))
     }
-
+    
     spin_up(){
         console.log(this.angle)
+        this.key_status = 'down'
         if(this.angle < radians(this.max_value) && this.angle < radians(this.max_value)){
             this.setIndicatorSwith(this.pointer_speed)
         }
     }
-
+    
     spin_down(){
         setInterval(() => {
             console.log(this.angle)
@@ -99,5 +100,4 @@ class Indicator{
             }
         }, this.spin_down_delay)
     }
-    
 }

@@ -19,6 +19,8 @@ function setup() {
 
   //admition = new Admition(400, 400)
   indicator = new Indicator(200, 200)
+  events.subscribe("a", indicator.spin_up)       
+
   //valve = new Valve(400, 400, 160)
   //combustion_chamber = new CombustionChamber(400, 400, 160)
 
