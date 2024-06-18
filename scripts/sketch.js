@@ -17,12 +17,13 @@ function setup() {
   createMatterWorld()
   renderWithMatter()
 
-  //admition = new Admition(400, 400)
-  indicator = new Indicator(200, 200)
-  events.subscribe("a", indicator.spin_up)       
+  var indicator
+  let indicator_xpos = 200
+  let indicator_ypos = 200
 
-  //valve = new Valve(400, 400, 160)
-  //combustion_chamber = new CombustionChamber(400, 400, 160)
+  indicator = new Indicator(indicator_xpos, indicator_ypos)
+  //events.subscribe("a_up", indicator.spin_up)
+  //events.subscribe("a_down", indicator.spin_down)       
 
   frameRate(10)
 }
@@ -76,6 +77,4 @@ function draw() {
   strokeWeight(2)
   background(0)
   stroke(255, 100)
-  
-  //admition.show()
 }

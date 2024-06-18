@@ -28,6 +28,8 @@ class Indicator{
             parts: [this.pointer],
             isStatic: true
         })
+        events.subscribe("a_up", this.spin_up)
+        events.subscribe("a_down", this.spin_down) 
         World.add(world, this.body) 
     }
     
@@ -84,17 +86,16 @@ class Indicator{
         Body.setAngle(this.pointer, -radians(this.angle))
     }
     
-    spin_up(){
-        console.log(this.angle)
+    spin_up = () => {
         this.key_status = 'down'
-        if(this.angle < radians(this.max_value) && this.angle < radians(this.max_value)){
+        if(this.angle < radians(this.max_value)){
             this.setIndicatorSwith(this.pointer_speed)
         }
     }
     
-    spin_down(){
+    spin_down = () => {
+        this.key_status = 'up'
         setInterval(() => {
-            console.log(this.angle)
             if(-this.angle > radians(this.min_value) && this.key_status == 'up'){
                 this.setIndicatorSwith(-this.pointer_speed)
             }
