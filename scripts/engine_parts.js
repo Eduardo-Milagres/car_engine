@@ -40,7 +40,6 @@ class Admition{
     }
     
     setValveOppening = () => {
-        console.log(this.angle)
         this.key_status = 'down'
         if(this.angle < this.valve_oppening_angle && this.angle < this.max_valve_oppening_angle){
             this.setValveSwith(this.valve_swith_increment)
