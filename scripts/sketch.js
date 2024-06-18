@@ -21,9 +21,7 @@ function setup() {
   let indicator_xpos = 200
   let indicator_ypos = 200
 
-  indicator = new Indicator(indicator_xpos, indicator_ypos)
-  //events.subscribe("a_up", indicator.spin_up)
-  //events.subscribe("a_down", indicator.spin_down)       
+  indicator = new Indicator(indicator_xpos, indicator_ypos)  
 
   frameRate(10)
 }
