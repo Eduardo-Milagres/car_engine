@@ -4,8 +4,7 @@ var events = {
     subscribe: function (channelName, fn){
         this.subscribers[channelName] = this.subscribers[channelName] || []
         this.subscribers[channelName].push(fn)
-        console.log(`Subscribed to channel "${channelName}"`)
-        console.log(fn)
+        console.log(`[Subscribed]: Channel "${channelName}"`)
     },
 
     publish: function (channelName){
@@ -14,7 +13,7 @@ var events = {
                 fn()
             });
         }
-        console.log('publish')
+        console.log(`[${channelName} Publish]: Complete`)
     }
 }
 
@@ -25,23 +24,13 @@ function mousePressed(){
   
 document.addEventListener('keydown', (event)=>{
     if(event.key == "a"){
-        //admition.setValveOppening(90)
-        //admition.key_status = 'down'
-
-        events.publish('a', 'down')
-        //indicator.spin_up()
-        //indicator.key_status = 'down'
+        events.publish('a_up')
     }
 })
 
 document.addEventListener("keyup", (event)=>{
     if(event.key == "a"){
-        //admition.setValveClossing()
-        //admition.key_status = 'up'
-
-        //indicator.spin_down()
-        //indicator.key_status = 'up'
-        
+        events.publish('a_down')       
     }
 })
   
