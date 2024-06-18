@@ -34,10 +34,10 @@ function createElements(){
   let indicator_ypos = 200
 
   let admition
-  let admition_xpos = 200
+  let admition_xpos = 500
   let admition_ypos = 200
 
-  //indicator = new Indicator(indicator_xpos, indicator_ypos)  
+  indicator = new Indicator(indicator_xpos, indicator_ypos)  
   admition = new Admition(admition_xpos, admition_ypos, {angle: 0})
 }
 
