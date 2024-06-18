@@ -6,15 +6,18 @@ class Admition{
         this.lenght = 100 * this.scale || options.lenght
         this.thickness = 10 * this.scale || options.thickness
         this.padding = 3 * this.scale || options.padding
-        this.angle = 0 || options.angle
+        this.angle = .1 || options.angle
         this.radians_angle = radians(-this.angle)
-        this.min_valve_oppening_angle = 0 || options.min_valve_oppening_angle
+        this.valve_oppening_angle = 90 || options.valve_oppening_angle
+        this.min_valve_oppening_angle = .1 || options.min_valve_oppening_angle
         this.max_valve_oppening_angle = 90 || options.max_valve_oppening_angle
-        this.key_status = 'down'
         this.valve_swith_increment = 10 || options.valve_swith_increment
         this.close_valve_swith_delay = 60 || options.close_valve_swith_delay //miliseconds 
+        this.key_status = 'down'
 
         this.draw()
+        events.subscribe('a_up', this.setValveOppening)
+        events.subscribe('a_down', this.setValveClossing)
     }
 
     draw(){
@@ -36,16 +39,19 @@ class Admition{
         Body.setAngle(this.valve, radians(this.angle))
     }
     
-    setValveOppening(valve_oppening_angle){
-        if(this.angle < valve_oppening_angle && this.angle < this.max_valve_oppening_angle){
+    setValveOppening = () => {
+        console.log(this.angle)
+        this.key_status = 'down'
+        if(this.angle < this.valve_oppening_angle && this.angle < this.max_valve_oppening_angle){
             this.setValveSwith(this.valve_swith_increment)
         }
     }
 
-    setValveClossing(){
+    setValveClossing = () => {
+        this.key_status = 'up'
         setInterval(() => {
             if(this.angle > this.min_valve_oppening_angle && this.key_status == 'up'){
-                this.setValveSwith(-this.valve_swith_increment)
+                this.setValveSwith(-this.valve_swith_increment/1.5)
             }
         }, this.close_valve_swith_delay)
     }

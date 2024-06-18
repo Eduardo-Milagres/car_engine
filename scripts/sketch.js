@@ -17,12 +17,7 @@ function setup() {
   createMatterWorld()
   renderWithMatter()
 
-  var indicator
-  let indicator_xpos = 200
-  let indicator_ypos = 200
-
-  indicator = new Indicator(indicator_xpos, indicator_ypos)  
-
+  createElements()
   frameRate(10)
 }
 
@@ -31,6 +26,19 @@ function createCanva(){
   let canvas = createCanvas(canvas_size.width, canvas_size.heigth)
   
   canvas.parent('canvas_area')
+}
+
+function createElements(){
+  var indicator
+  let indicator_xpos = 200
+  let indicator_ypos = 200
+
+  let admition
+  let admition_xpos = 200
+  let admition_ypos = 200
+
+  //indicator = new Indicator(indicator_xpos, indicator_ypos)  
+  admition = new Admition(admition_xpos, admition_ypos, {angle: 0})
 }
 
 function getCanvasAreaSize(){
