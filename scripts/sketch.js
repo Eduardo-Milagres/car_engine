@@ -39,6 +39,7 @@ function createElements(){
 
   indicator = new Indicator(indicator_xpos, indicator_ypos)  
   admition = new Admition(admition_xpos, admition_ypos, {angle: 0})
+    chamber = new CombustionChanber(200,500,50)
 }
 
 function getCanvasAreaSize(){
